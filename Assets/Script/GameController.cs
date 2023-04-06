@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject lobbyPanel;
+    [SerializeField]
+    private Button startButton;
+
+
     void Start()
     {
-        
+        lobbyPanel.SetActive(true);
+        startButton.onClick.AddListener(GameStart);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void GameStart()
     {
-        
+        lobbyPanel.SetActive(false);
+        // RoundSetter.GetMouseQuestion(), GetKeyBoardQuestion() 문제 세팅
+        // InputChecker.keyCorrect, mouseCorrect = RoundSetter.GetMouseCorrect, GetKeyBoardCorrect 정답전달
     }
 }
