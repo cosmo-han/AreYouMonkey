@@ -4,5 +4,6 @@ using UnityEngine;
 public class CorrectSo : ScriptableObject
 {
     public GameObject[] corrects;
+    public string[] keyCorrects;
 }
 
