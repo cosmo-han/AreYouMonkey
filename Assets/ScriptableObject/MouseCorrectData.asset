@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771f273571cca4045a897cc0c4426dcc, type: 3}
   m_Name: MouseCorrectData
   m_EditorClassIdentifier: 
-  corrects:
-  - {fileID: 3595470907978266333, guid: eb845c13ea417f043bb6aad485f2c790, type: 3}
-  - {fileID: 7607903776148748462, guid: 7de3e0de4e6071043b794f792d801103, type: 3}
-  - {fileID: 6404726367121004045, guid: badb46cae573cda42921100a8f103944, type: 3}
-  - {fileID: 8325166843730614150, guid: 10994e957e752ed4b87b3edf29b10363, type: 3}
+  corrects: []
+  keyCorrects: []

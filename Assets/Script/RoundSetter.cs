@@ -12,36 +12,28 @@ public class RoundSetter : MonoBehaviour
     public List<Vector3> GetMouseCorrect() => linePosition;
 
     List<Vector3> linePosition = new List<Vector3>();
-    public List<GameObject> GetMouseQuestion()
+    public List<Vector3> GetMouseQuestion()
     {
-        List<GameObject> list = new List<GameObject>();
         for (int i = 0; i < 3; i++)
         {
-            int rand = RandIndex(mouseCorrectSO.corrects.Length);
-            list.Add(mouseCorrectSO.corrects[rand]);
-
-            var line = mouseCorrectSO.corrects[rand].GetComponent<LineRenderer>();
-            for (int j = 0; j < line.positionCount; j++)
-            {
-                var pos = new Vector3(line.GetPosition(j).x, line.GetPosition(j).y, line.GetPosition(j).z);
-                linePosition.Add(pos);
-            }
+            int rand = RandIndex(mouseCorrectSO.point.Length);
+            linePosition.Add(mouseCorrectSO.point[rand]);
         }
-        return list;
+
+        return linePosition;
     }
 
     List<string> key = new List<string>();
 
     public List<string> GetKeyBoardCorrect() => key;
 
-    public List<GameObject> GetKeyBoardQuestion()
+    public List<string> GetKeyBoardQuestion()
     {
-        List<GameObject> list = new List<GameObject>();
+        List<string> list = new List<string>();
         for (int i = 0; i < 3; i++)
         {
-            int rand = RandIndex(keyBoardCorrectSO.corrects.Length);
-            list.Add(keyBoardCorrectSO.corrects[rand]);
-            key.Add(keyBoardCorrectSO.corrects[rand].GetComponent<TextMesh>().text);
+            int rand = RandIndex(keyBoardCorrectSO.key.Length);
+            key.Add(keyBoardCorrectSO.key[rand]);
         }
 
         return list;
