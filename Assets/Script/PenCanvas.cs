@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace DrawLine
+namespace MonkeyGame
 {
     public class PenCanvas : MonoBehaviour, IPointerClickHandler
     {

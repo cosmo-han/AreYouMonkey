@@ -1,26 +1,40 @@
 using UnityEngine;
 using UnityEngine.UI;
-using MonkeyGame;
 
-public class GameController : MonoBehaviour
+namespace MonkeyGame
 {
-    [SerializeField]
-    private GameObject lobbyPanel;
-    [SerializeField]
-    private Button startButton;
-
-    void Start()
+    public class GameController : MonoBehaviour
     {
-        lobbyPanel.SetActive(true);
-        startButton.onClick.AddListener(GameStart);
-    }
+        [SerializeField]
+        private GameObject lobbyPanel;
+        [SerializeField]
+        private Button startButton;
+        int questionCount;
 
-    private void GameStart()
-    {
-        lobbyPanel.SetActive(false);
-        RoundSetter.Instance.SetMouseQuestion();
-        RoundSetter.Instance.SetKeyBoardQuestion();
-        // RoundSetter.GetMouseQuestion(), GetKeyBoardQuestion() 문제 세팅
-        // InputChecker.keyCorrect, mouseCorrect = RoundSetter.GetMouseCorrect, GetKeyBoardCorrect 정답전달
+        void Start()
+        {
+            lobbyPanel.SetActive(true);        
+            startButton.onClick.AddListener(GameStart);
+        }
+
+        private void GameStart()
+        {
+            lobbyPanel.SetActive(false);
+            NextQuestion();
+            // RoundSetter.GetMouseQuestion(), GetKeyBoardQuestion() 문제 세팅
+            // InputChecker.keyCorrect, mouseCorrect = RoundSetter.GetMouseCorrect, GetKeyBoardCorrect 정답전달
+        }
+
+        private void NextQuestion()
+        {
+            RoundSetter.Instance.SetMouseQuestion();
+            RoundSetter.Instance.SetKeyBoardQuestion();
+            Timer.time = 0;
+            questionCount++;
+            if (questionCount > 9)
+            {
+                lobbyPanel.SetActive(true);               
+            }
+        }
     }
 }

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using MonkeyGame;
 
-namespace DrawLine
+namespace MonkeyGame
 {
     public class Line : MonoBehaviour
     {
@@ -24,10 +23,12 @@ namespace DrawLine
 
             line.positionCount++;
             dots.Add(dot);
-            if (dots.Count == RoundSetter.Instance.GetMouseCorrect().Count)
+            var correct = RoundSetter.Instance.GetMouseCorrect();
+            if (dots.Count == correct.Count)
             {
                 line.loop = enabled;
-                PenTool.Instance.RemoveAddDot();
+                MouseChecker.Instance.RemoveAddDot();
+                MouseChecker.Instance.isCorrect(MouseChecker.Instance.redDot == correct.Count);
             }
         }
 

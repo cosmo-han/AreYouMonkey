@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputChecker : MonoBehaviour
+namespace MonkeyGame
 {
-    private List<Vector3> mouseInput;
-    private List<string> keyboardInput;
+    public class InputChecker : MonoBehaviour
+    {
 
+    }
 }

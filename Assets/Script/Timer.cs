@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+namespace MonkeyGame
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Timer : MonoBehaviour
     {
-        
-    }
+        public static float time;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Update()
+        {
+            time += Time.deltaTime;
+            if(time < 3)
+            {
+                if (MouseChecker.Instance.isCorrect())
+                {
+                    Score.Instance.SetScore(-5);
+                }
+                if (KeyBoardChecker.Instance.isCorrect())
+                {
+                    Score.Instance.SetScore(-5);
+                }
+            }
+        }
     }
 }

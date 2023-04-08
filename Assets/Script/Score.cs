@@ -1,18 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class Score : MonoBehaviour
+namespace MonkeyGame
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Score : MonoBehaviour
     {
-        
-    }
+        public static Score Instance;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            Instance = this;
+        }
+
+        public int score = 100;
+        //public int SetScore { get; set; }
+        private TextMeshProUGUI scoreText;
+
+        private void Start()
+        {
+            scoreText = GetComponent<TextMeshProUGUI>();
+            scoreText.text = "";
+        }
+
+        public void SetScore(int sum)
+        {
+            score += sum;
+            scoreText.text = $"ฟ๘ผþทย : {score}%";
+        }
     }
 }

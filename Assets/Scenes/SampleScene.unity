@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 497146633}
   - component: {fileID: 497146635}
   - component: {fileID: 497146634}
+  - component: {fileID: 497146636}
   m_Layer: 0
   m_Name: keyboard
   m_TagString: Untagged
@@ -517,6 +518,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497146632}
   m_CullTransparentMesh: 1
+--- !u!114 &497146636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497146632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff5666ebed8b9142a216b0f4bf5c1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &504892531
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,6 +967,7 @@ MonoBehaviour:
   dotParent: {fileID: 307898921}
   lineParent: {fileID: 661915152}
   linePrefab: {fileID: 5919442764539827529, guid: 7704e52419831ac438fe9c5d583f3637, type: 3}
+  redDot: 0
 --- !u!1 &1291533294
 GameObject:
   m_ObjectHideFlags: 0
