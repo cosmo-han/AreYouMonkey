@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 771f273571cca4045a897cc0c4426dcc, type: 3}
+  m_Script: {fileID: 11500000, guid: 98dcbda1a38db784d8416ff778977fb3, type: 3}
   m_Name: MouseCorrectData
   m_EditorClassIdentifier: 
-  corrects: []
-  keyCorrects: []
+  pointPrefab: {fileID: 342578732275094853, guid: dcaa26895ca053d4fabafa8e617faa80, type: 3}
+  pointPositon:
+  - {x: -319, y: 116, z: 0}
+  - {x: -188, y: 283, z: 0}
+  - {x: -84, y: 119, z: 0}
+  - {x: -264, y: 302, z: 0}

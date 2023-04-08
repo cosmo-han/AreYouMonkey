@@ -2,15 +2,18 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PenCanvas : MonoBehaviour, IPointerClickHandler
+namespace DrawLine
 {
-    public Action OnPenCanvasLeftClickEvent;
-
-    public void OnPointerClick(PointerEventData eventData)
+    public class PenCanvas : MonoBehaviour, IPointerClickHandler
     {
-        if(eventData.pointerId == -1)
+        public Action OnPenCanvasLeftClickEvent;
+
+        public void OnPointerClick(PointerEventData eventData)
         {
-            OnPenCanvasLeftClickEvent?.Invoke();
+            if (eventData.pointerId == -1)
+            {
+                OnPenCanvasLeftClickEvent?.Invoke();
+            }
         }
     }
 }

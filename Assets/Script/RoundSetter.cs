@@ -1,47 +1,66 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class RoundSetter : MonoBehaviour
+namespace MonkeyGame
 {
-    [SerializeField]
-    private CorrectSo mouseCorrectSO;
-
-    [SerializeField]
-    private CorrectSo keyBoardCorrectSO;
-
-    public List<Vector3> GetMouseCorrect() => linePosition;
-
-    List<Vector3> linePosition = new List<Vector3>();
-    public List<Vector3> GetMouseQuestion()
+    public class RoundSetter : MonoBehaviour
     {
-        for (int i = 0; i < 3; i++)
+        public static RoundSetter Instance;
+
+        private void Awake()
         {
-            int rand = RandIndex(mouseCorrectSO.point.Length);
-            linePosition.Add(mouseCorrectSO.point[rand]);
+            Instance = this;
         }
 
-        return linePosition;
-    }
+        public Transform mouseCorrectParents;
+        [SerializeField]
+        private MouseCorrectSo mouseCorrectSO;
 
-    List<string> key = new List<string>();
+        public Transform keyboardCorrectParents;
+        [SerializeField]
+        private KeyboardCorrectSo keyboardCorrectSO;
 
-    public List<string> GetKeyBoardCorrect() => key;
+        private List<GameObject> points = new();
 
-    public List<string> GetKeyBoardQuestion()
-    {
-        List<string> list = new List<string>();
-        for (int i = 0; i < 3; i++)
+
+        public List<GameObject> GetMouseCorrect() => points;
+
+        public List<GameObject> SetMouseQuestion()//·£´ý ¼öÁ¤ -> °ãÄ¡¸é ´Ù½Ã rand
         {
-            int rand = RandIndex(keyBoardCorrectSO.key.Length);
-            key.Add(keyBoardCorrectSO.key[rand]);
+            for (int i = 0; i < RandIndex(2, mouseCorrectSO.pointPositon.Length); i++)
+            {
+                GameObject point = Instantiate(mouseCorrectSO.pointPrefab, mouseCorrectParents);
+                int rand = RandIndex(0, mouseCorrectSO.pointPositon.Length);
+                point.transform.localPosition = mouseCorrectSO.pointPositon[rand];
+                points.Add(point);
+            }
+            return points;
         }
 
-        return list;
-    }
+        List<GameObject> keys = new();
 
-    private int RandIndex(int max)
-    {
-        int index = Random.Range(0, max);
-        return index;
+        public List<GameObject> GetKeyBoardCorrect() => keys;
+
+        public List<GameObject> SetKeyBoardQuestion()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject Key = Instantiate(keyboardCorrectSO.keyPrefab, keyboardCorrectParents);
+                Key.transform.localPosition = new Vector3(i * 100 - 100, 0, 0);
+                int rand = RandIndex(0, keyboardCorrectSO.keyString.Length);
+                Key.GetComponent<TextMeshProUGUI>().text = keyboardCorrectSO.keyString[rand];
+                keys.Add(Key);
+            }
+
+            return keys;
+        }
+
+        private int RandIndex(int min, int max)
+        {
+            int index = Random.Range(min, max);
+            return index;
+        }
     }
 }
+

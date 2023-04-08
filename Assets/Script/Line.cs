@@ -1,55 +1,64 @@
 using System.Collections.Generic;
 using UnityEngine;
+using MonkeyGame;
 
-public class Line : MonoBehaviour
+namespace DrawLine
 {
-    private LineRenderer line;
-    private List<Dot> dots;
-
-    private void Awake()
+    public class Line : MonoBehaviour
     {
-        line = GetComponent<LineRenderer>();
-        line.positionCount = 0;
+        private LineRenderer line;
+        private List<Dot> dots;
 
-        dots = new List<Dot>();
-    }
-
-    public void AddPoint(Dot dot)
-    {
-        dot.index = dots.Count;
-        dot.SetLine(this);
-
-        line.positionCount++;
-        dots.Add(dot);
-    }
-
-    public void SplitPointsAtIndex(int index, out List<Dot> beforeDots, out List<Dot> afterDots)
-    {
-        List<Dot> before = new List<Dot>();
-        List<Dot> after = new List<Dot>();
-
-        int i = 0;
-        for (; i < index; i++)
+        private void Awake()
         {
-            before.Add(dots[i]);
-        }
-        i++;
-        for (; i < dots.Count; i++)
-        {
-            after.Add(dots[i]);
+            line = GetComponent<LineRenderer>();
+            line.positionCount = 0;
+
+            dots = new List<Dot>();
         }
 
-        beforeDots = before;
-        afterDots = after;
-    }
-
-    private void LateUpdate()
-    {
-        if(dots.Count >= 2)
+        public void AddPoint(Dot dot)
         {
-            for (int i = 0; i < dots.Count; i++)
+            dot.index = dots.Count;
+            dot.SetLine(this);
+
+            line.positionCount++;
+            dots.Add(dot);
+            if (dots.Count == RoundSetter.Instance.GetMouseCorrect().Count)
             {
-                line.SetPosition(i, dots[i].transform.position);
+                line.loop = enabled;
+                PenTool.Instance.RemoveAddDot();
+            }
+        }
+
+        public void SplitPointsAtIndex(int index, out List<Dot> beforeDots, out List<Dot> afterDots)
+        {
+            List<Dot> before = new List<Dot>();
+            List<Dot> after = new List<Dot>();
+
+            int i = 0;
+            for (; i < index; i++)
+            {
+                before.Add(dots[i]);
+            }
+            i++;
+            for (; i < dots.Count; i++)
+            {
+                after.Add(dots[i]);
+            }
+
+            beforeDots = before;
+            afterDots = after;
+        }
+
+        private void LateUpdate()
+        {
+            if (dots.Count >= 2)
+            {
+                for (int i = 0; i < dots.Count; i++)
+                {
+                    line.SetPosition(i, dots[i].transform.position);
+                }
             }
         }
     }
