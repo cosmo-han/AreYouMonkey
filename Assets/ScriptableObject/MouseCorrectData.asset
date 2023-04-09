@@ -13,8 +13,29 @@ MonoBehaviour:
   m_Name: MouseCorrectData
   m_EditorClassIdentifier: 
   pointPrefab: {fileID: 342578732275094853, guid: dcaa26895ca053d4fabafa8e617faa80, type: 3}
-  pointPositon:
-  - {x: -319, y: 116, z: 0}
-  - {x: -188, y: 283, z: 0}
-  - {x: -84, y: 119, z: 0}
-  - {x: -264, y: 302, z: 0}
+  Shapes:
+  - pointPositons:
+    - {x: 0, y: 0, z: 0}
+  - pointPositons:
+    - {x: -85, y: 0, z: 0}
+    - {x: 85, y: 0, z: 0}
+  - pointPositons:
+    - {x: 0, y: 85, z: 0}
+    - {x: -85, y: -65, z: 0}
+    - {x: 85, y: -65, z: 0}
+  - pointPositons:
+    - {x: -85, y: -85, z: 0}
+    - {x: -85, y: 85, z: 0}
+    - {x: 85, y: -85, z: 0}
+    - {x: 85, y: 85, z: 0}
+  - pointPositons:
+    - {x: -50, y: -90, z: 0}
+    - {x: 50, y: -90, z: 0}
+    - {x: -80, y: 10, z: 0}
+    - {x: 0, y: 90, z: 0}
+    - {x: 80, y: 10, z: 0}
+  - pointPositons:
+    - {x: 100, y: -85, z: 0}
+    - {x: -100, y: -85, z: 0}
+    - {x: -50, y: 85, z: 0}
+    - {x: 50, y: 85, z: 0}

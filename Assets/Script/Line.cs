@@ -28,11 +28,6 @@ namespace MonkeyGame
             {
                 line.loop = enabled;
                 MouseChecker.Instance.StopAddDot();
-                MouseChecker.Instance.IsCorrect = MouseChecker.Instance.RedDot == correct.Count;
-                if (MouseChecker.Instance.IsCorrect)
-                {                   
-                    Debug.Log("mouse Correct");
-                }
             }
         }
 

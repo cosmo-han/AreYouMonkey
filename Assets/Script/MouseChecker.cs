@@ -33,11 +33,6 @@ namespace MonkeyGame
         private int redDot;
         public int RedDot { get => redDot; set => redDot = value; }
 
-        private void Start()
-        {
-            //AddAddDot();
-        }
-
         public void StopAddDot()
         {
             penCanvas.OnPenCanvasLeftClickEvent -= AddDot;
@@ -64,40 +59,8 @@ namespace MonkeyGame
             dots.Add(dotObject);
             Dot dot = dotObject.GetComponent<Dot>();
             dot.OnDragEvent += MoveDot;
-            //dot.OnRightClickEvent += RemoveDot;
             currentLine.AddPoint(dot);
         }
-
-        //public void ClearDot()
-        //{
-        //    foreach (var obj in dots)
-        //    {
-        //        RemoveDot(obj.GetComponent<Dot>());
-        //    }
-        //}
-
-        //private void RemoveDot(Dot dot)
-        //{
-        //    Line line = dot.line;
-        //    line.SplitPointsAtIndex(dot.index, out List<Dot> before, out List<Dot> after);
-
-        //    Destroy(line.gameObject);
-        //    Destroy(dot.gameObject);
-
-        //    Line beforeLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity, lineParent)
-        //        .GetComponent<Line>();
-        //    for (int i = 0; i < before.Count; i++)
-        //    {
-        //        beforeLine.AddPoint(before[i]);
-        //    }
-
-        //    Line afterLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity, lineParent)
-        //        .GetComponent<Line>();
-        //    for (int i = 0; i < after.Count; i++)
-        //    {
-        //        afterLine.AddPoint(after[i]);
-        //    }
-        //}
 
         private void MoveDot(Dot dot)
         {
@@ -117,5 +80,9 @@ namespace MonkeyGame
             return worldMousePosition;
         }
 
+        public void CountDot()
+        {
+            IsCorrect = RedDot == QuestionSetter.Instance.GetMouseCorrect().Count;
+        }
     }
 }

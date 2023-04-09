@@ -11,25 +11,28 @@ namespace MonkeyGame
         [SerializeField]
         private Button startButton;
         int questionCount;
-        public readonly int ROUND = 10;
-        public readonly int ROUND_SCORE = 5;
+        private readonly int ROUND = 10;
 
         [SerializeField]
         private Score score;
         [SerializeField]
         private Timer timer;
+        IEnumerator enumerator;
 
         void Start()
         {
-            lobbyPanel.SetActive(true);        
+            lobbyPanel.SetActive(true);
+            enumerator = MyCoroutine();
             startButton.onClick.AddListener(GameStart);
         }
 
         private void GameStart()
         {
-            lobbyPanel.SetActive(false);
-            StartCoroutine(MyCoroutine());
+            lobbyPanel.SetActive(false);           
+            StartCoroutine(enumerator);
             timer.IsPlay = true;
+            questionCount = 0;
+            score.StartScore(ROUND);
         }
 
         private void SetNextQuestion()
@@ -39,35 +42,45 @@ namespace MonkeyGame
             QuestionSetter.Instance.SetMouseQuestion();
             QuestionSetter.Instance.SetKeyBoardQuestion();
             questionCount++;
-            Debug.Log(score.GetScore);
-            if (questionCount == ROUND)
-            {
-                lobbyPanel.SetActive(true);
-                score.PrintScore();
-                timer.IsPlay = false;
-            }
         }
 
         private void CheckScore()
         {
+            MouseChecker.Instance.CountDot();
             if (MouseChecker.Instance.IsCorrect)
             {
-                score.SetScore(-ROUND_SCORE);
+                score.SetScore(-score.RoundScore);
             }
             if (KeyBoardChecker.Instance.IsCorrect)
             {
-                score.SetScore(-ROUND_SCORE);
+                score.SetScore(-score.RoundScore);
             }
         }
 
         private void EndRound()
         {
             CheckScore();
-            Destroy(MouseChecker.Instance.CurrentLine?.gameObject);
+            if(MouseChecker.Instance.CurrentLine != null)
+            {
+                Destroy(MouseChecker.Instance.CurrentLine?.gameObject);
+            }
             QuestionSetter.Instance.ClearDotObject();
             QuestionSetter.Instance.ClearKeyObject();
             QuestionSetter.Instance.ClearPointObject();
             MouseChecker.Instance.StopAddDot();
+
+            if (questionCount == ROUND - 1)
+            {
+                EndGame();
+            }
+        }
+
+        private void EndGame()
+        {
+            lobbyPanel.SetActive(true);
+            score.PrintScore();
+            timer.IsPlay = false;
+            StopCoroutine(enumerator);
         }
 
         private IEnumerator MyCoroutine()
@@ -76,7 +89,7 @@ namespace MonkeyGame
             {
                 SetNextQuestion();
                 yield return new WaitForSeconds(timer.ResetTime());
-                EndRound();
+                EndRound();              
             }
         }
     }

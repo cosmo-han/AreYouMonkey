@@ -6,7 +6,7 @@ namespace MonkeyGame
     public class Timer : MonoBehaviour
     {
         private float time;
-        public readonly float MAX_TIME = 10;
+        private readonly float MAX_TIME = 5;
         private TextMeshProUGUI timeText;
 
         private bool isPlay;
@@ -17,7 +17,6 @@ namespace MonkeyGame
             time = MAX_TIME;
             timeText = GetComponent<TextMeshProUGUI>();
         }
-        public float GetTime { get => time; private set => time = value; }
 
         void Update()
         {
@@ -28,6 +27,6 @@ namespace MonkeyGame
             }
         }
 
-        public float ResetTime() => time = MAX_TIME;
+        public float ResetTime() => time = MAX_TIME; 
     }
 }

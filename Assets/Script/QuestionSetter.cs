@@ -31,13 +31,15 @@ namespace MonkeyGame
         public void SetMouseQuestion()//·£´ý ¼öÁ¤ -> °ãÄ¡¸é ´Ù½Ã rand
         {
             points = new();
-            for (int i = 0; i < RandIndex(2, mouseCorrectSO.pointPositon.Length); i++)
+            int randIndex = RandIndex(0, mouseCorrectSO.Shapes.Length);
+            var shape = mouseCorrectSO.Shapes[randIndex];
+            foreach (var pointPositon in shape.pointPositons)
             {
                 GameObject point = Instantiate(mouseCorrectSO.pointPrefab, mouseCorrectParents);
-                int rand = RandIndex(0, mouseCorrectSO.pointPositon.Length);
-                point.transform.localPosition = mouseCorrectSO.pointPositon[rand];
+                point.transform.localPosition = pointPositon;
                 points.Add(point);
             }
+            KeyBoardChecker.Instance.ResetInputText();
         }
 
         private Queue<string> keys = new();
@@ -79,7 +81,6 @@ namespace MonkeyGame
             foreach (var obj in gameObjects)
             {
                 Destroy(obj);
-                Debug.Log(obj.name);
             }
             gameObjects.Clear();
         }

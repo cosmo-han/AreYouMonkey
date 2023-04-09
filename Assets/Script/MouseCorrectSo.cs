@@ -4,5 +4,11 @@ using UnityEngine;
 public class MouseCorrectSo : ScriptableObject
 {
     public GameObject pointPrefab;
-    public Vector3[] pointPositon;
+    public Shape[] Shapes;
+}
+
+[System.Serializable]
+public class Shape
+{
+   public Vector3[] pointPositons;
 }

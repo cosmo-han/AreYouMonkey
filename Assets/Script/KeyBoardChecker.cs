@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using TMPro;
 
 namespace MonkeyGame
 {
@@ -17,7 +16,9 @@ namespace MonkeyGame
 
         private readonly int SIZE = 3;
         private Queue<string> inputKeys = new();
-        public Queue<string> GetInputKeys { get => inputKeys; }
+        [SerializeField] 
+        private TextMeshProUGUI myInput;
+
 
         void Update()
         {
@@ -25,10 +26,19 @@ namespace MonkeyGame
             {
                 if (Input.GetKeyDown(vKey))
                 {
-                    if((int)vKey >= 97 && (int)vKey <= 122)
+                    if ((int)vKey >= 97 && (int)vKey <= 122)
                     {
                         KeyEnqueue(inputKeys, $"{vKey}");
+                        myInput.text += $"{vKey}";
                         IsCorrect = QuestionSetter.Instance.GetKeyBoardCorrect().SequenceEqual(inputKeys);
+                        if (IsCorrect)
+                        {
+                            myInput.color = Color.green;
+                        }
+                        else
+                        {
+                            myInput.color = Color.white;
+                        }
                     }
                 }
             }
@@ -41,6 +51,13 @@ namespace MonkeyGame
             {
                 queue.Dequeue();
             }
+        }
+
+        public void ResetInputText()
+        {
+            myInput.color = Color.white;
+            myInput.text = "ÀÎÇ² : ";
+            IsCorrect = false;
         }
     }
 }

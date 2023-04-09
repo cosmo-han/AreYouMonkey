@@ -5,19 +5,28 @@ namespace MonkeyGame
 {
     public class Score : MonoBehaviour
     {
-        private int score;
-        public int GetScore { get => score; private set => score = value; }
+        private readonly int START_SCORE = 100;
+        private readonly int QUESTION = 2;
+        private int currentScore;
+        private int roundScore;
+        public int RoundScore { get => roundScore; }
+
         private TextMeshProUGUI scoreText;
 
         private void Start()
         {
-            score = 100;
             scoreText = GetComponent<TextMeshProUGUI>();
             scoreText.text = "";
         }
 
-        public void SetScore(int sum) => GetScore += sum;
+        public void StartScore(int round)
+        {
+            currentScore = START_SCORE;
+            roundScore = START_SCORE / round / QUESTION;
+        }
 
-        public void PrintScore() => scoreText.text = $"ฟ๘ผþทย : {GetScore}%";
+        public void SetScore(int sum) => currentScore += sum;
+
+        public void PrintScore() => scoreText.text = $"ฟ๘ผþทย : {currentScore}%";
     }
 }
