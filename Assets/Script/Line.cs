@@ -23,12 +23,16 @@ namespace MonkeyGame
 
             line.positionCount++;
             dots.Add(dot);
-            var correct = RoundSetter.Instance.GetMouseCorrect();
+            var correct = QuestionSetter.Instance.GetMouseCorrect();
             if (dots.Count == correct.Count)
             {
                 line.loop = enabled;
-                MouseChecker.Instance.RemoveAddDot();
-                MouseChecker.Instance.isCorrect(MouseChecker.Instance.redDot == correct.Count);
+                MouseChecker.Instance.StopAddDot();
+                MouseChecker.Instance.IsCorrect = MouseChecker.Instance.RedDot == correct.Count;
+                if (MouseChecker.Instance.IsCorrect)
+                {                   
+                    Debug.Log("mouse Correct");
+                }
             }
         }
 

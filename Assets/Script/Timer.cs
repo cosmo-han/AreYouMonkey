@@ -1,27 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace MonkeyGame
 {
     public class Timer : MonoBehaviour
     {
-        public static float time;
+        private float time;
+        public readonly float MAX_TIME = 10;
+        private TextMeshProUGUI timeText;
+
+        private bool isPlay;
+        public bool IsPlay { get => isPlay; set => isPlay = value; }
+
+        private void Start()
+        {
+            time = MAX_TIME;
+            timeText = GetComponent<TextMeshProUGUI>();
+        }
+        public float GetTime { get => time; private set => time = value; }
 
         void Update()
         {
-            time += Time.deltaTime;
-            if(time < 3)
+            if (IsPlay)
             {
-                if (MouseChecker.Instance.isCorrect())
-                {
-                    Score.Instance.SetScore(-5);
-                }
-                if (KeyBoardChecker.Instance.isCorrect())
-                {
-                    Score.Instance.SetScore(-5);
-                }
+                time -= Time.deltaTime;
+                timeText.text = $"{((int)time)}";
             }
         }
+
+        public float ResetTime() => time = MAX_TIME;
     }
 }

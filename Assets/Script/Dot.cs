@@ -31,13 +31,21 @@ namespace MonkeyGame
             this.line = line;
         }
 
+        public void DistorySelf()
+        {
+            if (line == null)
+            {
+                Destroy(gameObject);
+            }
+        }
+
         private void OnTriggerEnter2D(Collider2D col)
         {
             col.GetComponent<Image>().color = Color.red;
             transform.position = new Vector3(col.transform.position.x, col.transform.position.y, transform.position.z);
             transform.GetComponent<Image>().color = new Color(255, 255, 255, 0);
-            MouseChecker.Instance.RemoveMoveDot(GetComponent<Dot>());
-            MouseChecker.Instance.redDot++;
+            MouseChecker.Instance.StopMoveDot(GetComponent<Dot>());
+            MouseChecker.Instance.RedDot++;
         }
     }
 }

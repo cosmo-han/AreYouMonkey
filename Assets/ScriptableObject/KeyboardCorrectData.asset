@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyPrefab: {fileID: 6085240101370400907, guid: 9cf775b6cc5b1cb49a52cb1768c956ac, type: 3}
   keyString:
-  - q
-  - w
-  - e
-  - a
-  - s
-  - d
+  - Q
+  - W
+  - E
+  - A
+  - S
+  - D
